@@ -16,5 +16,7 @@
 ;; OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 (defpackage :zbar-utils
-  (:use #:cl #:j-utils #:alexandria)
-  (:export #:hello))
+  (:use #:cl #:alexandria)
+  (:export #:simple-scan
+           #:filter-image
+           #:scan-cv-image))
