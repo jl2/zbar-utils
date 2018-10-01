@@ -27,5 +27,20 @@
 (def-suite :zbar-utils)
 (in-suite :zbar-utils)
 
-(test hello
-  (is-true (hello)))
+(test cv-image-scan
+  (let* ((wiki-barcode (cv:load-image (format nil "~a" (asdf/system:system-relative-pathname :zbar-utils.test "wikipedia_barcode.png"))))
+         (result (zbar-utils:scan-cv-image wiki-barcode)))
+    (is (= 1 (length result)))
+    (let ((bc (car result)))
+      (is (eq (car bc) :ZBAR-EAN13))
+      (is (string= (cdr bc) "5901234123457")))))
+
+(test cv-simple-scan
+  (let* ((wiki-barcode-file-name (format nil "~a" (asdf/system:system-relative-pathname :zbar-utils.test "wikipedia_barcode.png")))
+         (result (zbar-utils:simple-scan wiki-barcode-file-name)))
+    (is (= 1 (length result)))
+    (let ((bc (car result)))
+      (is (eq (car bc) :ZBAR-EAN13))
+      (is (string= (cdr bc) "5901234123457")))))
+
+          
