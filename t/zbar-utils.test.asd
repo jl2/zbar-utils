@@ -29,7 +29,5 @@
   :depends-on ( :zbar-utils
                   :fiveam)
   
-  :components ((:module "t"
-                        :components 
-                        ((:file "package"))))
+  :components ((:file "package"))
   :perform (test-op :after (op c) (eval (read-from-string "(every #'fiveam::TEST-PASSED-P (5am:run :zbar-utils))"))))
