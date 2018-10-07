@@ -60,7 +60,7 @@
       rval)))
 
 (defun simple-scan (file-name)
-  (let* ((cvimage (cv:load-image file-name)))
+  (let* ((cvimage (cv:load-image file-name))
          (data (scan-cv-image cvimage)))
     (cv:release-image cvimage)
     data))
